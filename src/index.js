@@ -24,7 +24,13 @@ if (!clientId) {
   localStorage.setItem("clientId", clientId);
 }
 
-export const ws = new WebSocket("ws://10.0.0.98:3000");
+const port = import.meta.env.VITE_PORT;
+const url = import.meta.env.VITE_URL;
+
+const path = `${url}:${port}`;
+// console.log(path);
+
+export const ws = new WebSocket(path);
 
 ws.onopen = () => {
   ws.send(
