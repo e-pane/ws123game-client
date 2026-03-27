@@ -7,7 +7,7 @@ html, body {
 
 body {
   background: 
-    url('./images/card-table.jpg') no-repeat center center;
+    url('/images/card-table.jpg') no-repeat center center;
   background-size: cover;
   font-family: "SourceSans3";
   margin: 0;
@@ -22,13 +22,13 @@ body {
 }
 
 /* Random-ish positions around the form */
-.number1 { top: 10%; left: 5%; width: 150px; height: 150px; background-image: url('./images/ball1.png'); }
-.number2 { top: 15%; right: 10%; width: 150px; height: 150px; background-image: url('./images/ball2.png'); }
-.number3 { bottom: 20%; left: 15%; width: 150px; height: 150px; background-image: url('./images/ball3.png'); }
+.number1 { top: 10%; left: 5%; width: 150px; height: 150px; background-image: url('/images/ball1.png'); }
+.number2 { top: 15%; right: 10%; width: 150px; height: 150px; background-image: url('/images/ball2.png'); }
+.number3 { bottom: 20%; left: 15%; width: 150px; height: 150px; background-image: url('/images/ball3.png'); }
 
-.stopwatch { top: 70%; left: 80%; width: 150px; height: 150px; transform: translateX(-50%) rotate(-5deg); background-image: url('./images/stopwatch.png'); }
+.stopwatch { top: 70%; left: 80%; width: 150px; height: 150px; transform: translateX(-50%) rotate(-5deg); background-image: url('/images/stopwatch.png'); }
 
-.trophy { bottom: 10%; left: 50%; width: 300px; height: 300px; transform: translateX(-50%); background-image: url('./images/trophy.png'); }
+.trophy { bottom: 10%; left: 50%; width: 300px; height: 300px; transform: translateX(-50%); background-image: url('/images/trophy.png'); }
   
 h1 {
     font-size: 5rem;
