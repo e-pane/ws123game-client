@@ -145,7 +145,7 @@ export function renderGameOver(winnerName, ws) {
   // --- Winner overlay ---
   const winnerOverlay = document.createElement("div");
   winnerOverlay.classList.add("winner-message");
-  winnerOverlay.textContent = `Player ${winnerName} WINS!!!!`;
+  winnerOverlay.textContent = `${winnerName} WINS!!!!`;
 
   // --- Trophy + Legacy overlay container ---
   const trophyContainer = document.createElement("div");

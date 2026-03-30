@@ -73,12 +73,13 @@ function handleUndoPlay(message) {
 }
 
 function handleGameOver(message) {
-    // players: playersForClient,
-    // winnerIndex: result.winnerIndex,
     const players = message.players;
-    const winnerIndex = message.winnerIndex
-    const winningPlayer = players[winnerIndex];
+    const winnerIndex = message.winnerIndex;
+    console.log(winnerIndex);
+    const winningPlayer = players.find((p) => p.playerNumber === winnerIndex + 1);
+    console.log(winningPlayer);
     const winningPlayerName = winningPlayer.playerName;
+    console.log(winningPlayerName);
   
     renderGameOver(winningPlayerName, ws);
     renderStartButton(ws);
