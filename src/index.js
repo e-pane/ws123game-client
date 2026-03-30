@@ -18,10 +18,11 @@ function generateUUID() {
   });
 }
 
-let clientId = localStorage.getItem("clientId");
-if (!clientId) {
-  clientId = generateUUID(); // fallback UUID
-  localStorage.setItem("clientId", clientId);
+// persistent identity (for stats)
+let userId = localStorage.getItem("userId");
+if (!userId) {
+  userId = generateUUID();
+  localStorage.setItem("userId", userId);
 }
 
 const ws = new WebSocket(import.meta.env.VITE_WS_URL);
@@ -30,7 +31,7 @@ ws.onopen = () => {
   ws.send(
     JSON.stringify({
       type: "init",
-      clientId,
+      userId,
     }),
   );
 };
@@ -60,29 +61,23 @@ function handleGameStart(message) {
 }
 
 function handlePlayNumber(message) {
-    const { players, currentPhase, numbersAvailable } = message;
-    renderGameUI({ players, currentPhase, numbersAvailable }, ws);
-    }
+    const { players: playersForClient, currentPhase, numbersAvailable } = message;
+    renderGameUI({ players: playersForClient, currentPhase, numbersAvailable },ws);
+}
 
 function handleUndoPlay(message) {
     console.log("client side undo play handler reached");
-    const { players, currentPhase, numbersAvailable } = message;
-    
-    // players.forEach((player, idx) => {
-    //   player.playerName = players[idx].playerName;
-    //   player.numbersPlayed = players[idx].numbersPlayed;
-    //   player.gamesPlayed = players[idx].gamesPlayed;
-    //   player.gamesWon = players[idx].gamesWon;
-    // });
-    renderGameUI({ players, currentPhase, numbersAvailable }, ws);
+    const { players: playersForClient, currentPhase, numbersAvailable } = message;
+
+    renderGameUI({ players: playersForClient, currentPhase, numbersAvailable }, ws);
 }
 
 function handleGameOver(message) {
+    // players: playersForClient,
+    // winnerIndex: result.winnerIndex,
     const players = message.players;
     const winnerIndex = message.winnerIndex
-    console.log(winnerIndex);
     const winningPlayer = players[winnerIndex];
-    console.log(winningPlayer);
     const winningPlayerName = winningPlayer.playerName;
   
     renderGameOver(winningPlayerName, ws);

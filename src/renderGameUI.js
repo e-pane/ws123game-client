@@ -34,7 +34,9 @@ export function renderStartButton(ws) {
 
   button.addEventListener("click", () => {
     const msg = { type: "start_new_game" };
-    ws.send(JSON.stringify(msg));
+    if (ws.readyState === WebSocket.OPEN) {
+      ws.send(JSON.stringify(msg));
+    }
   });
 
   wrapper.appendChild(button);
@@ -143,7 +145,7 @@ export function renderGameOver(winnerName, ws) {
   // --- Winner overlay ---
   const winnerOverlay = document.createElement("div");
   winnerOverlay.classList.add("winner-message");
-  winnerOverlay.textContent = `${winnerName} WINS!!!!`;
+  winnerOverlay.textContent = `Player ${winnerName} WINS!!!!`;
 
   // --- Trophy + Legacy overlay container ---
   const trophyContainer = document.createElement("div");
